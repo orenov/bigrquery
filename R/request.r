@@ -52,7 +52,7 @@ bq_get <- function(url, ..., query = NULL, token = get_access_cred()) {
 }
 
 #' @importFrom httr GET config
-bq_get_paginated <- function(url, ..., query = NULL, token = get_access_cred(),
+bq_get_paginated <- function(url, ..., query = NULL,
                              page_size = 50, max_pages = Inf) {
 
   assert_that(is.numeric(max_pages), length(max_pages) == 1)
@@ -80,7 +80,7 @@ bq_get_paginated <- function(url, ..., query = NULL, token = get_access_cred(),
 
 
 #' @importFrom httr DELETE config
-bq_delete <- function(url, ..., query = NULL, token = get_access_cred()) {
+bq_delete <- function(url, ..., query = NULL) {
   req <- DELETE(
     paste0(base_url, url),
     config(token = token),
@@ -92,7 +92,7 @@ bq_delete <- function(url, ..., query = NULL, token = get_access_cred()) {
 }
 
 #' @importFrom httr POST add_headers config
-bq_post <- function(url, body, ..., query = NULL, token = get_access_cred()) {
+bq_post <- function(url, body, ..., query = NULL) {
   json <- jsonlite::toJSON(body)
   req <- POST(
     paste0(base_url, url),
@@ -107,7 +107,7 @@ bq_post <- function(url, body, ..., query = NULL, token = get_access_cred()) {
 }
 
 #' @importFrom httr PUT add_headers config
-bq_put <- function(url, body, ..., query = NULL, token = get_access_cred()) {
+bq_put <- function(url, body, ..., query = NULL) {
   json <- jsonlite::toJSON(body)
   req <- PUT(
     paste0(base_url, url),
@@ -122,7 +122,7 @@ bq_put <- function(url, body, ..., query = NULL, token = get_access_cred()) {
 }
 
 #' @importFrom httr POST add_headers config
-bq_upload <- function(url, parts, ..., query = NULL, token = get_access_cred()) {
+bq_upload <- function(url, parts, ..., query = NULL) {
   url <- paste0(upload_url, url)
   req <- POST_multipart_related(
     url,
